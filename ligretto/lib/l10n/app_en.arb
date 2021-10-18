@@ -1,0 +1,14 @@
+{
+  "homeTitle": "Ligretto score",
+  "@homeTitle": {
+    "description": "Page title."
+  },
+  "newGameButton": "Start new game",
+  "@newGameButton": {
+    "description": ""
+  },
+  "names": "Names",
+  "@names": {
+    "description": ""
+  }
+}
