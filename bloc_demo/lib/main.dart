@@ -16,15 +16,49 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: BlocProvider(
-        create: (_) => SearchBloc(),
-        child: const MyHomePage(
+    return BlocProvider(
+      create: (_) => SearchBloc(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
+        // routes: {
+        //   "/firstpage": (context) => FirstPage(),
+        // },
+        home: const MyHomePage(),
+      ),
+    );
+  }
+}
+
+class FirstPage extends StatelessWidget {
+  const FirstPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("First page"),
+      ),
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            child: TextFormField(
+              decoration: const InputDecoration(
+                labelText: "Search term",
+                enabledBorder: UnderlineInputBorder(),
+              ),
+              onChanged: (text) {
+                context.read<SearchBloc>().add(SearchUpdateNameEvent(text));
+              },
+            ),
+          ),
+          const Expanded(
+            child: ListWidget(),
+          ),
+        ],
       ),
     );
   }
@@ -41,6 +75,19 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          ElevatedButton(
+            child: const Text("Go to first page"),
+            onPressed: () {
+              Navigator.push(
+                // <- anonymous navigation
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      const FirstPage(), // <- navigation target
+                ),
+              );
+            },
+          ),
           Container(
             padding: const EdgeInsets.all(16),
             child: TextFormField(

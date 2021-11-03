@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ligretto/widgets/list_item.dart';
+import 'package:ligretto/widgets/score_bottomappbar.dart';
 import '../common_imports.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -12,11 +14,31 @@ class HomePage extends StatelessWidget {
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          leading: const Icon(Icons.arrow_back),
-          title: const Text("App title"),
-          actions: const [Text("Action1"), Text("Action2")],
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          bottomNavigationBar: ScoreBottomAppBar(),
+          appBar: AppBar(
+            //leading: const Icon(Icons.arrow_back),
+            title: const Text("App title"),
+            //actions: const [Text("Action1"), Text("Action2")],
+            bottom: TabBar(
+              tabs: [
+                Tab(
+                  icon: Icon(Icons.directions_bike),
+                ),
+                Tab(
+                  icon: Icon(Icons.directions_bike),
+                ),
+                Tab(
+                  icon: Icon(Icons.directions_bike),
+                )
+              ],
+            ),
+          ),
+          body: TabBarView(
+            children: [const ListItem(), const ListItem(), const ListItem()],
+          ),
         ),
       ),
     );
@@ -36,11 +58,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
@@ -54,23 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(l10n.homeTitle),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Padding(
@@ -104,22 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                    PageRouteBuilder<void>(
-                      pageBuilder: (BuildContext context,
-                          Animation<double> animation,
-                          Animation<double> secondaryAnimation) {
-                        return AnimatedBuilder(
-                            animation: animation,
-                            builder: (_, Widget? child) {
-                              return Opacity(
-                                opacity: animation.value,
-                                child: HomePage(),
-                              );
-                            });
-                      },
-                      transitionDuration: const Duration(milliseconds: 400),
-                    ),
+                  Navigator.pushNamed(
+                    context,
+                    "/initpage",
                   );
                 },
                 child: Text(
@@ -130,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),
             Padding(
               padding:
-              const EdgeInsetsDirectional.only(end: 0, top: 10, bottom: 0),
+                  const EdgeInsetsDirectional.only(end: 0, top: 10, bottom: 0),
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Icon(

@@ -2,6 +2,8 @@ import 'package:bloc_demo/bloc/bloc_search_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+
+
 class ListWidget extends StatelessWidget {
   const ListWidget();
 
