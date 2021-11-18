@@ -27,9 +27,9 @@ class LigBloc extends Bloc<LigEvent, LigState> {
       user.score = Players.players[playerIndex].score;
       user.score[event.rowID - 1] = event.resultPoints;
       user.sumPoints();
+      emit(LigScoreState(user, event.columnID));
       Players.players[playerIndex].score[event.rowID - 1] = event.resultPoints;
       Players.players[playerIndex].sumPoints();
-      emit(LigScoreState(user, event.columnID));
     });
   }
 }

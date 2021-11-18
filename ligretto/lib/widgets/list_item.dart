@@ -4,6 +4,8 @@ import 'package:ligretto/widgets/point_column.dart';
 
 import 'Numbering.dart';
 
+final int rowNum = 21; //Actual number is rowNum-1 because of the for cycle
+
 //Most az a terv, hogy a body-ból lehessen ezt példányosítani.
 
 class ListItem extends StatelessWidget {
@@ -39,38 +41,6 @@ class ListItem extends StatelessWidget {
         ),
       ],
     );
-
-    // return BlocConsumer<SearchBloc, SearchState>(
-    //   listenWhen: (_, state) => state is SearchErrorEventState,
-    //   listener: (context, state){
-    //     if (state is SearchErrorEventState){
-    //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
-    //     }
-    //   },
-    //   buildWhen: (_, state) => state is SearchResultListState,
-    //   builder: (context, state) {
-    //     if (state is SearchResultListState) {
-    //       return ListView.builder(
-    //         padding: const EdgeInsets.all(8),
-    //         itemBuilder: (context, index) {
-    //           var user = state.users[index];
-    //           return SizedBox(
-    //             height: 90,
-    //             child: Row(
-    //               children: [
-    //                 Image.network(user.imageUrl, width: 90,),
-    //                 Text(user.name),
-    //               ],
-    //             ),
-    //           );
-    //         },
-    //         itemCount: state.users.length,
-    //       );
-    //     } else {
-    //       return Container();
-    //     }
-    //   },
-    // );
   }
 }
 
@@ -82,62 +52,30 @@ List<Widget> allContainers = [
   Flexible(
     flex: 2,
     child: Container(
-      height: 1000,
-      //width: 50,
-      decoration: BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25), bottomLeft: Radius.circular(25)),
-      ),
-      child: Numbering()//PointColumn(0)//Numbering(),
-    ),
+        decoration: BoxDecoration(
+          color: Colors.green,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25), bottomLeft: Radius.circular(25)),
+        ),
+        child: Numbering(rowNum) //PointColumn(0)//Numbering(),
+        ),
   ),
-  Flexible(
-    flex: 4,
-    child: Container(
-      height: 1000,
-      //width: 50,
-      decoration: BoxDecoration(
-        color: Color(0xE3D2CF1D),
-      ),
-      //padding: const EdgeInsetsDirectional.all(30),
-      child: PointColumn(1)
-    ),
-  ),
-  Flexible(
-    flex: 4,
-    child: Container(
-      height: 1000,
-      //width: 50,
-      decoration: BoxDecoration(
-        color: Colors.black54,
-        //borderRadius: BorderRadius.circular(25),
-      ),
-      child: PointColumn(2)
-    ),
-  ),
-  Flexible(
-    flex: 4,
-    child: Container(
-      height: 1000,
-      //width: 50,
-      decoration: BoxDecoration(
-        color: Colors.blue,
-      ),
-      child: PointColumn(3)
-    ),
-  ),
-  Flexible(
-    flex: 4,
-    child: Container(
-      height: 1000,
-      //width: 50,
-      decoration: BoxDecoration(
-        color: Color(0xD5C2522D),
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(25), bottomRight: Radius.circular(25)),
-      ),
-      child: PointColumn(4)
-    ),
-  ),
+  ColumnFlexible(1, Color(0xE3D2CF1D)),
+  ColumnFlexible(2, Colors.black54),
+  ColumnFlexible(3, Colors.blue),
+  ColumnFlexible(4, Color(0xD5C2522D)),
 ];
+
+Flexible ColumnFlexible(int playerNum, Color color) {
+  return Flexible(
+    flex: 4,
+    child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: playerNum == 4 ? BorderRadius.only( //4. oszlopnál legyen csak lekerekítve
+              topRight: Radius.circular(25), bottomRight: Radius.circular(25)) : null,
+        ),
+        //padding: const EdgeInsetsDirectional.all(30),
+        child: PointColumn(playerNum, rowNum)),
+  );
+}
