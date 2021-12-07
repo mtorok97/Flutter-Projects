@@ -5,7 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ligretto/bloc/lig_bloc.dart';
 
 class ScoreBottomAppBar extends StatelessWidget {
-  const ScoreBottomAppBar();
+  const ScoreBottomAppBar(this.tabNum);
+
+  final int tabNum;
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +50,19 @@ class ScoreBottomAppBar extends StatelessWidget {
               ),
               //padding: const EdgeInsetsDirectional.all(30),
               child: BlocBuilder<LigBloc, LigState>(
-                buildWhen: (_, state) =>
-                    (state is LigScoreState && state.userID == 1),
+                buildWhen: (_, state) => (state is LigScoreState &&
+                    (state.userID == 1 + tabNum * 4)),
                 builder: (context, state) {
                   if (state is LigScoreState) {
                     var user = state.user;
                     return Center(
-                        child: Text(
-                      "${user.sum.toString()}",
-                      style: GoogleFonts.merriweather().copyWith(fontSize: 18),
-                    ));
+                        child: (state.userID == 1 + tabNum * 4)
+                            ? Text(
+                                "${user.sum.toString()}",
+                                style: GoogleFonts.merriweather()
+                                    .copyWith(fontSize: 18),
+                              )
+                            : null);
                   } else {
                     return Container(); //Container();
                   }
@@ -75,15 +80,18 @@ class ScoreBottomAppBar extends StatelessWidget {
               ),
               child: BlocBuilder<LigBloc, LigState>(
                 buildWhen: (_, state) =>
-                    (state is LigScoreState && state.userID == 2),
+                    (state is LigScoreState && state.userID == 2 + tabNum * 4),
                 builder: (context, state) {
                   if (state is LigScoreState) {
                     var user = state.user;
                     return Center(
-                        child: Text(
-                      "${user.sum.toString()}",
-                      style: GoogleFonts.merriweather().copyWith(fontSize: 18),
-                    ));
+                        child: (state.userID == 2 + tabNum * 4)
+                            ? Text(
+                                "${user.sum.toString()}",
+                                style: GoogleFonts.merriweather()
+                                    .copyWith(fontSize: 18),
+                              )
+                            : null);
                   } else {
                     return Container();
                   }
@@ -100,15 +108,18 @@ class ScoreBottomAppBar extends StatelessWidget {
               ),
               child: BlocBuilder<LigBloc, LigState>(
                 buildWhen: (_, state) =>
-                    (state is LigScoreState && state.userID == 3),
+                    (state is LigScoreState && state.userID == 3 + tabNum * 4),
                 builder: (context, state) {
                   if (state is LigScoreState) {
                     var user = state.user;
                     return Center(
-                        child: Text(
-                      "${user.sum.toString()}",
-                      style: GoogleFonts.merriweather().copyWith(fontSize: 18),
-                    ));
+                        child: (state.userID == 3 + tabNum * 4)
+                            ? Text(
+                                "${user.sum.toString()}",
+                                style: GoogleFonts.merriweather()
+                                    .copyWith(fontSize: 18),
+                              )
+                            : null);
                   } else {
                     return Container();
                   }
@@ -127,15 +138,18 @@ class ScoreBottomAppBar extends StatelessWidget {
               ),
               child: BlocBuilder<LigBloc, LigState>(
                 buildWhen: (_, state) =>
-                    (state is LigScoreState && state.userID == 4),
+                    (state is LigScoreState && state.userID == 4 + tabNum * 4),
                 builder: (context, state) {
                   if (state is LigScoreState) {
                     var user = state.user;
                     return Center(
-                        child: Text(
-                      "${user.sum.toString()}",
-                      style: GoogleFonts.merriweather().copyWith(fontSize: 18),
-                    ));
+                        child: (state.userID == 4 + tabNum * 4)
+                            ? Text(
+                                "${user.sum.toString()}",
+                                style: GoogleFonts.merriweather()
+                                    .copyWith(fontSize: 18),
+                              )
+                            : null);
                   } else {
                     return Container();
                   }

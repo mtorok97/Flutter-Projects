@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ligretto/bloc/lig_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ligretto/data/user.dart';
 import 'package:ligretto/widgets/list_item.dart';
 
 class PointColumn extends StatelessWidget {
@@ -13,6 +14,7 @@ class PointColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Center(
       child: Column(
         children: [
@@ -20,9 +22,12 @@ class PointColumn extends StatelessWidget {
             padding: const EdgeInsetsDirectional.only(top: 10),
           ),
           TextFormField(
-            initialValue: "Név",
+            initialValue: ((Players.players[columnNum-1].name != "") ? Players.players[columnNum-1].name : "Név"),
             textAlign: TextAlign.center,
             style: GoogleFonts.merriweather().copyWith(fontSize: 18),
+            onChanged: (text){
+              Players.players[columnNum-1].name = text;
+            },
           ),
           for (int i = 1; i < rowNumber; i++) CreateCellScore(context, i),
         ],
@@ -36,6 +41,7 @@ class PointColumn extends StatelessWidget {
       textAlign: TextAlign.center,
       keyboardType: TextInputType.number,
       style: GoogleFonts.merriweather().copyWith(fontSize: 18),
+      initialValue: (Players.players[columnNum-1].score[rowID-1].toString() =="0") ? "" : Players.players[columnNum-1].score[rowID-1].toString(),
       onChanged: (text) {
         if (text == "") {
           text = "0";

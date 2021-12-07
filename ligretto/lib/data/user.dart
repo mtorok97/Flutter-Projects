@@ -1,9 +1,10 @@
 import 'package:ligretto/widgets/list_item.dart';
 
 class User {
-  final String name;
+  String name = "";
   late int sum;
-  List<int> score = List.filled(rowNum - 1, 0);
+  List<int> score = List.filled(
+      rowNum, 0); // ez így eggyel több elemű mint ami pont megjelenik
 
   User(this.name) {}
 
@@ -14,6 +15,7 @@ class User {
     });
     this.sum = summa;
   }
+
 }
 
 class Players {

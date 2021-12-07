@@ -7,8 +7,16 @@
   "@newGameButton": {
     "description": ""
   },
-  "names": "Names",
+  "names": "Name",
   "@names": {
+    "description": ""
+  },
+  "results": "Results",
+  "@results": {
+    "description": ""
+  },
+  "back": "Back to scores",
+  "@back": {
     "description": ""
   }
 }

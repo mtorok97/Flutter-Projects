@@ -1,45 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ligretto/bloc/lig_bloc.dart';
+import 'package:ligretto/page/results_page.dart';
 import 'package:ligretto/widgets/list_item.dart';
 import 'package:ligretto/widgets/score_bottomappbar.dart';
+import '../app.dart';
 import '../common_imports.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+final int tabsNum = 3;
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          bottomNavigationBar: ScoreBottomAppBar(),
-          appBar: AppBar(
-            //leading: const Icon(Icons.arrow_back),
-            title: const Text("App title"),
-            //actions: const [Text("Action1"), Text("Action2")],
-            bottom: TabBar(
-              tabs: [
-                Tab(
-                  icon: Icon(Icons.directions_bike),
-                ),
-                Tab(
-                  icon: Icon(Icons.directions_bike),
-                ),
-                Tab(
-                  icon: Icon(Icons.directions_bike),
-                )
-              ],
+    return BlocProvider(
+      create: (context) => LigBloc(),
+      child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        routes: {
+          "/resultspage": (context) => ResultsPage(),
+          "/homepage": (context) => HomePage(),
+        },
+        localizationsDelegates: L10n.localizationsDelegates,
+        supportedLocales: L10n.supportedLocales,
+        home: DefaultTabController(
+          length: tabsNum,
+          child: Scaffold(
+            appBar: AppBar(
+              //leading: const Icon(Icons.arrow_back),
+              title: const Text("App title"),
+              //actions: const [Text("Action1"), Text("Action2")],
+              bottom: TabBar(
+                onTap: (int index) {
+                },
+                tabs: [
+                  for (int i = 0; i < tabsNum; i++)
+                    Tab(
+                      icon: Icon(Icons.directions_bike),
+                    ),
+                ],
+              ),
+            ),
+            body: TabBarView(
+              children: [
+                for (int i = 0; i < tabsNum; i++) ListItem(i)
+              ], //, const ListItem(), const ListItem()],
             ),
           ),
-          body: TabBarView(
-            children: [const ListItem(), const ListItem(), const ListItem()],
-          ),
         ),
+        //home: MyTabbedPage(),
       ),
     );
   }
@@ -76,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Padding(
               padding:
-                  const EdgeInsetsDirectional.only(end: 0, top: 30, bottom: 0),
+              const EdgeInsetsDirectional.only(end: 0, top: 30, bottom: 0),
             ),
             Text(
               "Ligretto",
@@ -87,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Padding(
               padding:
-                  const EdgeInsetsDirectional.only(end: 0, top: 50, bottom: 0),
+              const EdgeInsetsDirectional.only(end: 0, top: 50, bottom: 0),
             ),
             Image.asset(
               'assets/icon/app_icon.png',
@@ -95,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Padding(
               padding:
-                  const EdgeInsetsDirectional.only(end: 0, top: 50, bottom: 0),
+              const EdgeInsetsDirectional.only(end: 0, top: 50, bottom: 0),
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Icon(
@@ -118,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),
             Padding(
               padding:
-                  const EdgeInsetsDirectional.only(end: 0, top: 10, bottom: 0),
+              const EdgeInsetsDirectional.only(end: 0, top: 10, bottom: 0),
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Icon(
@@ -150,11 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _incrementCounter,
-      //   tooltip: 'Increment',
-      //   child: const Icon(Icons.add),
-      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
+

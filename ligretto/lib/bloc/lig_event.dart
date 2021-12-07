@@ -10,3 +10,9 @@ class UpdatePointsEvent extends LigEvent{
 
   UpdatePointsEvent(this.resultPoints, this.rowID, this.columnID);
 }
+
+class ClearPointsEvent extends LigEvent{
+  final int columnID;
+
+  ClearPointsEvent(this.columnID);
+}

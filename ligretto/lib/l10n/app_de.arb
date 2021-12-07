@@ -2,5 +2,8 @@
   "@@locale": "de",
   "homeTitle": "Ligretto Punkte",
   "newGameButton": "Neues Spiel",
-  "names": "Namen"
+  "names": "Name",
+  "results": "Ergebnisse",
+  "back": "Zurück zu den Punkten"
+
 }
