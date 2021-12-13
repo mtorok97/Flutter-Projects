@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ligretto/bloc/lig_bloc.dart';
 import 'package:ligretto/data/user.dart';
-import 'package:ligretto/page/home_page.dart';
 import 'package:provider/src/provider.dart';
 
 import '../common_imports.dart';
+import 'init_page.dart';
 
 class ResultsPage extends StatelessWidget {
   const ResultsPage({Key? key}) : super(key: key);

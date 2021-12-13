@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1046645107550",
+    "project_id": "ligretto-97b63",
+    "storage_bucket": "ligretto-97b63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046645107550:android:a81118adac9d58be067dcf",
+        "android_client_info": {
+          "package_name": "com.example.ligretto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046645107550-p9ubc2fk7v1bo9a48p3ilbcfdcagathm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ligretto",
+            "certificate_hash": "71b24c17e3482d62b785935bb7910cfa3678b9f9"
+          }
+        },
+        {
+          "client_id": "1046645107550-0efdpfg7su4demjnq9c5jgqk98ubi79f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF3-cuKcPzICHB0gK5TvlWjhxR93APZts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046645107550-0efdpfg7su4demjnq9c5jgqk98ubi79f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

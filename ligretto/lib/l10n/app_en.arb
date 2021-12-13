@@ -18,5 +18,9 @@
   "back": "Back to scores",
   "@back": {
     "description": ""
+  },
+  "scoring": "Scoring",
+  "@scoring": {
+    "description": ""
   }
 }

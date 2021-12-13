@@ -1,80 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ligretto/bloc/lig_bloc.dart';
-import 'package:ligretto/page/results_page.dart';
-import 'package:ligretto/widgets/list_item.dart';
-import 'package:ligretto/widgets/score_bottomappbar.dart';
-import '../app.dart';
 import '../common_imports.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-final int tabsNum = 3;
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LigBloc(),
-      child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.green,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        routes: {
-          "/resultspage": (context) => ResultsPage(),
-          "/homepage": (context) => HomePage(),
-        },
-        localizationsDelegates: L10n.localizationsDelegates,
-        supportedLocales: L10n.supportedLocales,
-        home: DefaultTabController(
-          length: tabsNum,
-          child: Scaffold(
-            appBar: AppBar(
-              //leading: const Icon(Icons.arrow_back),
-              title: const Text("App title"),
-              //actions: const [Text("Action1"), Text("Action2")],
-              bottom: TabBar(
-                onTap: (int index) {
-                },
-                tabs: [
-                  for (int i = 0; i < tabsNum; i++)
-                    Tab(
-                      icon: Icon(Icons.directions_bike),
-                    ),
-                ],
-              ),
-            ),
-            body: TabBarView(
-              children: [
-                for (int i = 0; i < tabsNum; i++) ListItem(i)
-              ], //, const ListItem(), const ListItem()],
-            ),
-          ),
-        ),
-        //home: MyTabbedPage(),
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class StartPage extends StatefulWidget {
+  const StartPage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<StartPage> createState() => _StartPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class _StartPageState extends State<StartPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -167,4 +103,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-

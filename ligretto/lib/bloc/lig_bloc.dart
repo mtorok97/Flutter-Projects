@@ -2,8 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ligretto/data/user.dart';
-import 'package:ligretto/page/home_page.dart';
-import 'package:ligretto/widgets/list_item.dart';
+import 'package:ligretto/pages/init_page.dart';
 
 part 'lig_event.dart';
 
